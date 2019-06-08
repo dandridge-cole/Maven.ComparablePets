@@ -6,6 +6,11 @@ public class Cat extends Pet {
         species ="cat";
     }
 
+    public Cat(String name) {
+        super(name);
+        species ="cat";
+    }
+
     public String speak(){
         return "You may feed me now.";
     }
