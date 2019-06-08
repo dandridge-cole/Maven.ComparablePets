@@ -103,7 +103,7 @@ class PetManager {
         }
     }
 
-    private void sortByType(){
+    private void sortBySpecies(){
         Arrays.sort(this.thePets,new speciesComparator());
     }
 
