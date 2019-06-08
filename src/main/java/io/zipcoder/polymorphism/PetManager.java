@@ -5,6 +5,9 @@ import io.zipcoder.pets.Dog;
 import io.zipcoder.pets.Dragon;
 import io.zipcoder.pets.Pet;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 class PetManager {
     private Integer numPets;
     private Pet[] thePets;
@@ -45,18 +48,9 @@ class PetManager {
 
     private void createPetInArray(int i, String userInput) {
         switch (userInput.toLowerCase()){
-            case "dog":{
-                this.thePets[i]=new Dog();
-                break;
-            }
-            case "cat":{
-                this.thePets[i]=new Cat();
-                break;
-            }
-            default:{
-                this.thePets[i]=new Dragon();
-                break;
-            }
+            case "dog":{this.thePets[i]=new Dog(); break; }
+            case "cat":{this.thePets[i]=new Cat(); break; }
+            default:{   this.thePets[i]=new Dragon(); break; }
         }
     }
 
@@ -89,7 +83,7 @@ class PetManager {
         return input.toLowerCase().equals("cat") || !input.toLowerCase().equals("dog") || !input.toLowerCase().equals("dragon");
     }
 
-    private static String ordinal(int i) { // I got this method from stackoverflow -- BUT I do understand what it is doing :)
+    private static String ordinal(int i) { // I got this method from stackoverflow.com -- BUT I do understand what it is doing :)
         String[] sufixes = new String[] { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th" };
         switch (i % 100) {
             case 11:
@@ -99,6 +93,19 @@ class PetManager {
             default:
                 return i + sufixes[i % 10];
 
+        }
+    }
+
+    private void sortByType(){
+        Arrays.sort(this.thePets,new speciesComparator());
+    }
+
+    class speciesComparator implements Comparator<Pet> {
+        @Override
+        public int compare(Pet p1, Pet p2){
+            int specComp = p1.getSpecies().compareTo(p2.getSpecies());
+            if(specComp!=0)return specComp;
+            return p1.getName().compareTo(p2.getName());
         }
     }
 }
