@@ -11,7 +11,14 @@ import java.util.Comparator;
 class PetManager {
     private Integer numPets;
     private Pet[] thePets;
- //   private Console console = new Console();
+
+    public PetManager() {
+    }
+
+    public PetManager(Pet[] thePets) {
+        this.thePets = thePets;
+    }
+    //   private Console console = new Console();
 
     void run(){
         requestNumPets();
